@@ -42,12 +42,12 @@ public class GestionSalarioEmpleado {
         hora_minuto_fin = hora_fin + (minuto_fin / 60);
 
         if (hora_minuto_inicio > 0 && hora_minuto_fin <= 9) {
-            return 1;
+            return 1; //PRIMERA JORNADA
         } else {
             if (hora_minuto_inicio > 9 && hora_minuto_fin <= 18) {
-                return 2;
+                return 2; //SEGUNDA JORNADA
             } else {
-                return 3;
+                return 3; //TERCERA JORNADA
             }
         }
 
@@ -76,13 +76,13 @@ public class GestionSalarioEmpleado {
             case "TH":
             case "FR":
                 if (tipo_jornada == 1) {
-                    tipo_horario = 1;
+                    tipo_horario = 1; // DIA NORMAL, PRIMERA JORNADA
                 } else {
                     if (tipo_jornada == 2) {
-                        tipo_horario = 2;
+                        tipo_horario = 2; // DIA NORMAL, SEGUNDA JORNADA
                     } else {
                         if (tipo_jornada == 3) {
-                            tipo_horario = 3;
+                            tipo_horario = 3; // DIA NORMAL, TERCERA JORNADA
                         }
                     }
                 }
@@ -90,13 +90,13 @@ public class GestionSalarioEmpleado {
             case "SA":
             case "SU":
                 if (tipo_jornada == 1) {
-                    tipo_horario = 4;
+                    tipo_horario = 4; // FIN DE SEMANA, PRIMERA JORNADA
                 } else {
                     if (tipo_jornada == 2) {
-                        tipo_horario = 5;
+                        tipo_horario = 5; // FIN DE SEMANA, SEGUNDA JORNADA
                     } else {
                         if (tipo_jornada == 3) {
-                            tipo_horario = 6;
+                            tipo_horario = 6; // FIN DE SEMANA, TERCERA JORNADA
                         }
                     }
                 }
@@ -111,13 +111,13 @@ public class GestionSalarioEmpleado {
      * Función para calcular el total a pagar según la cantidad de horas trabajadas y el tipo
      * de horario en el que se trabajó
      *
-     * @param tipo
+     * @param tipo_horario
      * @param cantidad_horas
      * @return
      */
-    public double calcularTotalPagoHorario(int tipo, double cantidad_horas) {
+    public double calcularTotalPagoHorario(int tipo_horario, double cantidad_horas) {
         double total_pago;
-        switch (tipo) {
+        switch (tipo_horario) {
             case 1:
             case 6:
                 total_pago = cantidad_horas * 25;
